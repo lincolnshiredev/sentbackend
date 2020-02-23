@@ -44,13 +44,24 @@ def request(ticker, date):
     news1 = requests.get(url='https://newsapi.org/v2/everything?q=' +
                          ticker[1] + '&sortBy=popularity' + '&from=' + date + '&apiKey=' + apiKey[(random.randint(0, 9))])
 
+    querystring = {"category":ticker[0],"region":"US"}
+
+    headers = {
+    'x-rapidapi-host': "apidojo-yahoo-finance-v1.p.rapidapi.com",
+    'x-rapidapi-key': "d7f35db41dmshe775a38f5fe0ae0p1fa253jsn8923c9b0d612"
+    }
+
+    news2 = requests.get(url='https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-newsfeed', headers=headers, params=querystring)
+
+    #print(news2.text)
+
     data = xmltodict.parse(news.text)
 
     flattened_doc = [flatten_dict(x) for x in data['rss']['channel']['item']]
     df = pd.DataFrame(flattened_doc)
     df1 = pd.read_json(json.dumps((news1.json())['articles']))
-    # df1 = (pd.read_json(json.dumps((news1.json())['articles'])))
-    # print(df1)
+    df2 = pd.read_json(json.dumps((news2.json())['items']['result']))
+   
 
     df = df.drop(columns=['guid_#text', 'guid_@isPermaLink', 'media:thumbnail_@url',
                           'sa:picture', 'sa:stock_sa:company_name', 'sa:stock_sa:symbol'])
