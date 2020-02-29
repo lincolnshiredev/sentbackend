@@ -3,6 +3,8 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from datetime import datetime, timedelta
 import pandas as pd
 import string
+import requests
+import json
 
 sia = SentimentIntensityAnalyzer()
 
@@ -10,11 +12,16 @@ date = datetime.now().strftime("%Y-%m-%d")
 
 newsapi = NewsApiClient(api_key='d1303aa27f3840d9a0c5da1cccfc171b')
 
-tickers = [["mfst", "microsoft"], ["aapl", "apple"],
+tickers = [["msft", "microsoft"], ["aapl", "apple"],
            ["GME", "gamestop"], ["amzn", "amazon"]]
 
-def get_articles(ticker,date):
 
+def requestProfile(ticker: str): 
+  
+    stock= requests.get(url='https://financialmodelingprep.com/api/v3/company/profile/' + ticker)
+    return json.dumps((stock.json())['profile']['price'])
+
+def get_articles(ticker,date):
     all_articles = newsapi.get_everything(q=ticker[0],
                                       from_param= date,
                                       language='en',
@@ -24,6 +31,7 @@ def get_articles(ticker,date):
     all_articles = pd.concat([all_articles.drop(['articles'], axis=1), all_articles['articles'].apply(pd.Series)], axis=1)
     all_articles["ticker"] = ticker[0]
     all_articles["company"] = ticker[1]
+    all_articles["lastPrice"] = requestProfile(ticker[0])
     all_articles.drop_duplicates(subset ="title", 
                      keep = False, inplace = True)
     return all_articles
@@ -53,8 +61,9 @@ for ticker in tickers:
 df = runSent(df)
 
 df = df.drop(columns=['articles','source','status','totalResults'])
-df = df[['publishedAt', 'title', 'description', 'content', 'company','ticker','sentiment']]
+df = df[['publishedAt', 'title', 'description', 'content', 'company','ticker','sentiment', 'lastPrice']]
 
 jsonresp = df.to_json(orient='records')
+
 print(jsonresp)
 
