@@ -16,14 +16,19 @@ def requestData(ticker: str, days: int):
 def request(ticker: str,days: int): 
     # Calls the functions and then removes data that is not required 
     companyInfoDf: pd.Dataframe = requestProfile(ticker)
-    hisoricDataDf: pd.DataFrame = requestData(ticker,days)
+    historicDataDf: pd.DataFrame = requestData(ticker,days)
    
-    hisoricDataDf = hisoricDataDf.drop(columns=['symbol'])
+    historicDataDf = historicDataDf.drop(columns=['symbol'])
     companyInfoDf = companyInfoDf.drop(columns=['symbol'])
     companyInfoDf = companyInfoDf.drop(['beta','changes','changesPercentage','description','image','industry','lastDiv','mktCap','range','volAvg'])
     
-    # Converts the dataframes back to json which is all combined and returned
-    return (companyInfoDf.to_json() + hisoricDataDf.to_json())
+    # Converts the dataframes to a dictionary and then to json which is returned
+    profileDict = companyInfoDf.to_dict()
+    historicDict = historicDataDf.to_dict()
+    
+    combinedDict = {'companyData':profileDict,'data':historicDict}
+    
+    return json.dumps(combinedDict)
     
 tickers: str = ['aapl','msft','googl','amzn']
 # Example tickers for companies, case insensitive
