@@ -102,6 +102,6 @@ df = df.append(df2,sort=True)
 df = df[['publishedAt', 'title', 'description','url', 'company','ticker','sentiment']]
 
 jsonresp = df.to_json(orient='records')
-df.to_json(r'data1.json', orient='records')
+#df.to_json(r'data1.json', orient='records')
 print(jsonresp)
 
