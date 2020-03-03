@@ -24,7 +24,7 @@ def request(ticker: str,days: int):
     
     # Converts the dataframes to a dictionary and then to json which is returned
     profileDict = companyInfoDf.to_dict()
-    historicDict = historicDataDf.to_dict()
+    historicDict = historicDataDf.to_dict(orient='records')
     
     combinedDict = {'companyData':profileDict,'data':historicDict}
     
