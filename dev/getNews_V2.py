@@ -9,7 +9,7 @@ import json
 import dateparser
 
 sia = SentimentIntensityAnalyzer()
-date = datetime.now().strftime("%Y-%m-%d")
+date = (datetime.now()- timedelta(days=1)).strftime("%Y-%m-%d")
 newsapi = NewsApiClient(api_key='d1303aa27f3840d9a0c5da1cccfc171b')
 headers = {'x-rapidapi-host': "apidojo-yahoo-finance-v1.p.rapidapi.com",
            'x-rapidapi-key': "8d02ef92a9mshbe032b4fec7a9bfp15eb07jsn6fc9e511caff"}
@@ -23,106 +23,118 @@ def requestProfile(ticker: str):
     return json.dumps((stock.json())['companyData']['profile']['price'])
 
 
-def get_articles(ticker, date):
+def getNewsApiArticles(ticker, date):
     print('Getting Artices from News API')
-    all_articles = newsapi.get_everything(q=ticker,
+    newsApiDf = newsapi.get_everything(q=ticker,
                                           from_param=date,
                                           language='en',
                                           page=1)
 
-    all_articles = pd.DataFrame(all_articles)
-    all_articles = pd.concat([all_articles.drop(
-        ['articles'], axis=1), all_articles['articles'].apply(pd.Series)], axis=1)
-    all_articles["ticker"] = ticker
-    all_articles["lastPrice"] = requestProfile(ticker)
-    all_articles.drop_duplicates(subset="title",
+    newsApiDf = pd.DataFrame(newsApiDf)
+    newsApiDf = pd.concat([newsApiDf.drop(
+        ['articles'], axis=1), newsApiDf['articles'].apply(pd.Series)], axis=1)
+    newsApiDf["ticker"] = ticker
+    newsApiDf["lastPrice"] = requestProfile(ticker)
+    newsApiDf.drop_duplicates(subset="title",
                                  keep=False, inplace=True)
     print("Successfully got articles from News API")
-    return all_articles
+    return newsApiDf
 
 
-def request(ticker):
+def getYahooNewsArticles(ticker):
     print('Getting Articles from Yahoo')
     querystring = {"category": ticker, "region": "US"}
 
-    news = requests.get(url='https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-newsfeed',
+    yahooNews = requests.get(url='https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-newsfeed',
                         headers=headers, params=querystring)
 
-    df = pd.read_json(json.dumps((news.json())['items']['result']))
-    df = df.drop(columns=['uuid', 'main_image', 'entities', 'ignore_main_image', 'streams',
+    yahooNewsdf = pd.read_json(json.dumps((yahooNews.json())['items']['result']))
+    yahooNewsdf = yahooNewsdf.drop(columns=['uuid', 'main_image', 'entities', 'ignore_main_image', 'streams',
                           'offnet', 'reference_id', 'is_magazine', 'type', 'publisher', 'author'])
-    df['summary'] = df['summary'].str.lower()
-    df['content'] = df['content'].str.lower()
-    df["lastPrice"] = requestProfile(ticker)
+    yahooNewsdf['summary'] = yahooNewsdf['summary'].str.lower()
+    yahooNewsdf['content'] = yahooNewsdf['content'].str.lower()
+    yahooNewsdf["lastPrice"] = requestProfile(ticker)
 
-    for index, row in df.iterrows():
-        df.loc[index, 'ticker'] = ticker
-        df.loc[index, 'sentiment'] = sentiment(row['summary'])
+    for index, row in yahooNewsdf.iterrows():
+        yahooNewsdf.loc[index, 'ticker'] = ticker
+        yahooNewsdf.loc[index, 'sentiment'] = sentiment(row['summary'])
 
-    df = df[df['sentiment'] != 0]
+    yahooNewsdf = yahooNewsdf[yahooNewsdf['sentiment'] != 0]
     print("successfully retrieved articles from yahoo and performed sentiment analysis")
-    return df
+    return yahooNewsdf
 
 
 def sentiment(text):
     return sia.polarity_scores(text)['compound']
 
 
-def runSent(df):
+def runSent(dataFrame):
     print('Perfoming Sentiment Analysis on news api')
-    for index, row in df.iterrows():
+    for index, row in dataFrame.iterrows():
         if (row['description'] != None):
             sentVal = sentiment(row['description'])
-            df.loc[index, 'sentiment'] = sentVal
+            dataFrame.loc[index, 'sentiment'] = sentVal
             sentVal = 0
         else:
             sentVal = sentiment(row['content'])
-            df.loc[index, 'sentiment'] = sentVal
+            dataFrame.loc[index, 'sentiment'] = sentVal
             sentVal = 0
 
-    df = df[df['sentiment'] != 0]
+    dataFrame = dataFrame[dataFrame['sentiment'] != 0]
     print('Sentiment Analysis Complete on news api')
-    return df
+    return dataFrame
 
 
-df = pd.DataFrame()
-df2 = pd.DataFrame()
+newsApiDf = pd.DataFrame() #df
+yahooNewsDf = pd.DataFrame() #df2
+
 
 for ticker in tickers:
-    df = df.append(get_articles(ticker, date), sort=True)
-    df2 = df2.append(request(ticker))
+    newsApiDf = newsApiDf.append(getNewsApiArticles(ticker, date), sort=True)
+    yahooNewsDf = yahooNewsDf.append(getYahooNewsArticles(ticker))
 
-if (len(df) != 0):
-    df = runSent(df)
-    df = df[['publishedAt', 'title', 'description', 'url',
+
+if (len(newsApiDf) != 0):
+    newsApiDf = runSent(newsApiDf)
+    newsApiDf = newsApiDf[['publishedAt', 'title', 'description', 'url',
              'ticker', 'sentiment', 'lastPrice']]
-    df2.rename(columns={'published_at': 'publishedAt',
+    yahooNewsDf.rename(columns={'published_at': 'publishedAt',
                         'summary': 'description', 'link': 'url'}, inplace=True)
-    df2 = df2[['publishedAt', 'title', 'description', 'url',
+    yahooNewsDf = yahooNewsDf[['publishedAt', 'title', 'description', 'url',
                'ticker', 'sentiment', 'lastPrice']]
-    df = df.append(df2, sort=True)
-    df = df[['publishedAt', 'title', 'description', 'url',
+    
+    # newsApiDict = newsApiDf.to_dict()
+    # yahooNewsDict = yahooNewsDf.to_dict()
+    
+    # newsArticlesDict = {'newsApi':newsApiDict,'yahooNews':yahooNewsDict}
+    
+    newsApiDf.append(yahooNewsDf, sort=True)
+
+    newsApiDf = newsApiDf[['publishedAt', 'title', 'description', 'url',
              'ticker', 'sentiment', 'lastPrice']]
 else:
     print('no results for news api')
-    df2.rename(columns={'published_at': 'publishedAt',
+    yahooNewsDf.rename(columns={'published_at': 'publishedAt',
                         'summary': 'description', 'link': 'url'}, inplace=True)
-    df2 = df2[['publishedAt', 'title', 'description', 'url',
+    yahooNewsDf = yahooNewsDf[['publishedAt', 'title', 'description', 'url',
                'ticker', 'sentiment', 'lastPrice']]
-    df = df2
-    df = df[['publishedAt', 'title', 'description', 'url',
+    newsApiDf = yahooNewsDf
+    newsApiDf = newsApiDf[['publishedAt', 'title', 'description', 'url',
              'ticker', 'sentiment', 'lastPrice']]
 
 
-for index, row in df.iterrows():
+for index, row in newsApiDf.iterrows():
     time1 =  dateparser.parse(str(row['publishedAt'])) 
     time1 = int(time.mktime(time1.timetuple()))
     time1 = time.gmtime(time1)
     time1 = time.strftime("%Y-%m-%d", time1)
-    df.loc[index, 'publishedAt'] = time1
+    newsApiDf.loc[index, 'publishedAt'] = time1
 
-df = df[df['publishedAt'] == date]
 
-jsonresp = df.to_json(orient='records')
+newsApiDf = newsApiDf[newsApiDf['publishedAt'] == date]
+
+
+jsonresp = newsApiDf.to_json(orient='records')
+
 
 print(jsonresp)
