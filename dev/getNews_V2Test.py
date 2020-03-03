@@ -64,6 +64,8 @@ def getYahooNewsArticles(ticker: str):
 
     for index, row in yahooNewsDf.iterrows():
         yahooNewsDf.loc[index, 'sentiment'] = sentiment(row['summary'])
+        yahooNewsDf.loc[index, 'urlToImage'] = "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg" 
+        # Example stock image, by: Markus Spiske, hosted on: https://www.pexels.com/
     
     yahooNewsDf = yahooNewsDf[yahooNewsDf['sentiment'] != 0]
     
@@ -124,23 +126,23 @@ if (len(newsApiDf) != 0):
         numberOfArticles = numberOfArticles + 1
     
     newsApiDf = newsApiDf.drop(columns=['content','description','status','totalResults','author','source'])
+    newsApiDf = newsApiDf.append(yahooNewsDf,sort=True)
     
     avgSentiment:float = overallSentiment/numberOfArticles
     valuesDict ={"numberOfArticles":numberOfArticles,"overallSentiment":overallSentiment,"avgSentiment": ("{0:.2f}".format(avgSentiment))}
 
     newsApiDict = newsApiDf.to_dict(orient='records')
-    yahooNewsDict = yahooNewsDf.to_dict(orient='records')
 
     newsApiDf.drop
 
-    newsArticlesDict = {'newsApi':newsApiDict,'yahooNews':yahooNewsDict,'additionalData':valuesDict}
+    newsArticlesDict = {'articles ':newsApiDict,'additionalData':valuesDict}
 
     jsonresp = json.dumps(newsArticlesDict, default=str)
 else:
     print('no results for news api')
     
     yahooNewsDict = yahooNewsDf.to_dict(orient='records')
-    newsArticlesDict = {'yahooNews':yahooNewsDict,'additionalData':valuesDict}
+    newsArticlesDict = {'articles':yahooNewsDict,'additionalData':valuesDict}
 
     jsonresp = json.dumps(newsArticlesDict, default=str)
 
