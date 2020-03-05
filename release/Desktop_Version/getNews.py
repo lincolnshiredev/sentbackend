@@ -15,7 +15,7 @@ date = (datetime.now()).strftime("%Y-%m-%d")# - timedelta(days=1)
 
 newsapi = NewsApiClient(api_key='d1303aa27f3840d9a0c5da1cccfc171b')
 headers = {'x-rapidapi-host': "apidojo-yahoo-finance-v1.p.rapidapi.com",
-           'x-rapidapi-key': "8d02ef92a9mshbe032b4fec7a9bfp15eb07jsn6fc9e511caff"}
+           'x-rapidapi-key': "api key here"}
 
 def getNewsApiArticles(ticker: str, date):
     
