@@ -1,1 +1,113 @@
-{"articles ": [{"publishedAt": "2020-03-04", "sentiment": 0.7906, "sourceName": "Seekingalpha.com", "title": "Tracking Stephen Mandel's Lone Pine Capital Portfolio - Q4 2019 Update", "url": "https://seekingalpha.com/article/4329373-tracking-stephen-mandels-lone-pine-capital-portfolio-q4-2019-update", "urlToImage": "https://static.seekingalpha.com/uploads/2020/3/3/106657-1583236401937939.jpg"}, {"publishedAt": "2020-03-04", "sentiment": 0.6597, "sourceName": "Businesswire.com", "title": "Microsoft and Accenture Collaborate to Help Entrepreneurs Amplify Social Impact", "url": "https://www.businesswire.com/news/home/20200303006130/en/Microsoft-Accenture-Collaborate-Entrepreneurs-Amplify-Social-Impact", "urlToImage": "http://www.businesswire.com/images/bwlogo_square.png"}, {"publishedAt": "2020-03-04", "sentiment": -0.7088, "sourceName": "Glassdoor.com", "title": "Microsoft Software Engineer-II says \"Average but boring\"", "url": "https://www.glassdoor.com/Reviews/Employee-Review-Microsoft-RVW32193756.htm", "urlToImage": "https://media.glassdoor.com/lst2x/1651/microsoft-office.jpg"}, {"publishedAt": "2020-03-04", "sentiment": 0.3818, "sourceName": "Seekingalpha.com", "title": "February Performance Of The Concentrated High Growth Dividend Portfolio", "url": "https://seekingalpha.com/article/4329363-february-performance-of-concentrated-high-growth-dividend-portfolio", "urlToImage": "https://static3.seekingalpha.com/uploads/2020/3/1/4084651-15831157959557984.png"}, {"publishedAt": "2020-03-04 05:46:37", "sentiment": 0.9169, "sourceName": "Investor's Business Daily", "title": "Dow Jones Futures Jump On Super Tuesday Election Results; A Coronavirus Stock Market Correction Survival Guide", "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-rate-cut-flops-coronavirus-stock-market-correction-survival-guide/?src=A00220&yptr=yahoo", "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"}, {"publishedAt": "2020-03-04 05:29:00", "sentiment": 0.6597, "sourceName": "Business Wire", "title": "Microsoft and Accenture Collaborate to Help Entrepreneurs Amplify Social Impact", "url": "https://finance.yahoo.com/news/microsoft-accenture-collaborate-help-entrepreneurs-052900424.html", "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"}, {"publishedAt": "2020-03-03 23:15:39", "sentiment": 0.4767, "sourceName": "Investopedia", "title": "Best Dividend Stocks for March 2020", "url": "https://www.investopedia.com/best-dividend-stocks-4774650?utm_campaign=quote-yahoo&utm_source=yahoo&utm_medium=referral&yptr=yahoo", "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"}, {"publishedAt": "2020-03-03 22:46:42", "sentiment": -0.8625, "sourceName": "Insider Monkey", "title": "Is Microsoft Corporation (MSFT) A Good Stock To Buy?", "url": "https://finance.yahoo.com/news/microsoft-corporation-msft-good-stock-224642439.html", "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"}, {"publishedAt": "2020-03-03 21:46:38", "sentiment": -0.5267, "sourceName": "Yahoo Finance", "title": "Coronavirus-canceled events update: Google conference, Geneva Motor Show and more", "url": "https://finance.yahoo.com/news/coronavirus-canceled-events-214638633.html", "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"}, {"publishedAt": "2020-03-03 21:28:24", "sentiment": -0.875, "sourceName": "Reuters", "title": "US STOCKS-Another foul day on Wall Street after surprise Fed rate cut", "url": "https://finance.yahoo.com/news/us-stocks-another-foul-day-212639099.html", "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"}, {"publishedAt": "2020-03-03 21:25:52", "sentiment": 0.9006, "sourceName": "Bloomberg", "title": "Google Cancels Most Important Conference on Coronavirus Concern", "url": "https://finance.yahoo.com/news/google-cancels-most-important-conference-212552067.html", "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"}, {"publishedAt": "2020-03-03 20:33:30", "sentiment": -0.296, "sourceName": "Investor's Business Daily", "title": "Dow Jones Down Nearly 600 Points Despite Fed Rate Cut", "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-down-nearly-points-despite-fed-rate-cut/?src=A00220&yptr=yahoo", "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"}, {"publishedAt": "2020-03-03 19:58:33", "sentiment": -0.8316, "sourceName": "Reuters", "title": "US STOCKS-Wall Street tumbles after Fed surprise rate cut", "url": "https://finance.yahoo.com/news/us-stocks-wall-street-tumbles-195314113.html", "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"}], "additionalData": {"numberOfArticles": 13, "overallSentiment": 0.6854, "avgSentiment": "0.05"}}
+{
+    "articles ": [
+      {
+        "publishedAt": "2020-03-07",
+        "sentiment": 0.4215,
+        "sourceName": "Business Insider",
+        "title": "Meet 13 significant execs who left Microsoft under Satya Nadella as the old guard departed – and find out what they're doing now (MSFT)",
+        "url": "https://www.businessinsider.com/significant-microsoft-executive-departures-satya-nadella-2020-3",
+        "urlToImage": "https://i.insider.com/5db77305dee01979935e4332?width=1200&format=jpeg"
+      },
+      {
+        "publishedAt": "2020-03-07",
+        "sentiment": 0.34,
+        "sourceName": "Seekingalpha.com",
+        "title": "Nicholas Ward's Dividend Growth Portfolio: February 2020 Update",
+        "url": "https://seekingalpha.com/article/4330422-nicholas-wards-dividend-growth-portfolio-february-2020-update",
+        "urlToImage": "https://static2.seekingalpha.com/uploads/2020/3/4/5939041-15833332334429832.png"
+      },
+      {
+        "publishedAt": "2020-03-07",
+        "sentiment": -0.743,
+        "sourceName": "Thestreet.com",
+        "title": "How Low Can Apple, Roku, Tesla and Other Tech Darlings Go? - TheStreet",
+        "url": "https://www.thestreet.com/technology/how-low-can-tech-darlings-go",
+        "urlToImage": "https://www.thestreet.com/.image/t_share/MTY5MzI1ODc0MDgzMDEzOTIx/apple-3.jpg"
+      },
+      {
+        "publishedAt": "2020-03-07",
+        "sentiment": 0.4215,
+        "sourceName": "Seekingalpha.com",
+        "title": "Big US Stocks' Q4'19 Fundamentals",
+        "url": "https://seekingalpha.com/article/4330420-big-us-stocks-q419-fundamentals",
+        "urlToImage": "https://static2.seekingalpha.com/uploads/2020/3/6/24047273-1583514623349853.png"
+      },
+      {
+        "publishedAt": "2020-03-07",
+        "sentiment": 0.8658,
+        "sourceName": "Seekingalpha.com",
+        "title": "5 Safe And Cheap Dividend Stocks To Invest (March 2020)",
+        "url": "https://seekingalpha.com/article/4329885-5-safe-and-cheap-dividend-stocks-to-invest-march-2020",
+        "urlToImage": "https://static.seekingalpha.com/uploads/2020/3/434815_15833568212867_rId5.png"
+      },
+      {
+        "publishedAt": "2020-03-07 16:06:00",
+        "sentiment": 0.7503,
+        "sourceName": "MarketWatch",
+        "title": "Boomers and millennials both love Apple and Amazon, but here are the brands they don’t agree on",
+        "url": "https://www.marketwatch.com/story/boomers-and-millennials-both-love-apple-and-amazon-but-here-are-the-brands-they-dont-agree-on-2020-03-05?siteid=yhoof2&yptr=yahoo",
+        "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"
+      },
+      {
+        "publishedAt": "2020-03-07 15:45:00",
+        "sentiment": -0.2732,
+        "sourceName": "MarketWatch",
+        "title": "Coronavirus update: 101,733 cases, 3,460 deaths, U.S. grocers see sales jump as Americans prepare",
+        "url": "https://www.marketwatch.com/story/coronavirus-update-100347-cases-3408-deaths-us-grocers-see-sales-jump-as-americans-prepare-2020-03-06?siteid=yhoof2&yptr=yahoo",
+        "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"
+      },
+      {
+        "publishedAt": "2020-03-07 15:00:00",
+        "sentiment": -0.743,
+        "sourceName": "TheStreet.com",
+        "title": "How Low Can Apple, Roku, Tesla and Other Tech Darlings Go?",
+        "url": "https://www.thestreet.com/technology/how-low-can-tech-darlings-go?puc=yahoo&cm_ven=YAHOO&yptr=yahoo",
+        "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"
+      },
+      {
+        "publishedAt": "2020-03-07 14:18:00",
+        "sentiment": 0.7506,
+        "sourceName": "MarketWatch",
+        "title": "If every Time ‘man of the year’ had been a woman, here’s whom the magazine would have picked",
+        "url": "https://www.marketwatch.com/story/if-every-time-man-of-the-year-had-been-a-woman-heres-who-they-would-have-selected-2020-03-05?siteid=yhoof2&yptr=yahoo",
+        "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"
+      },
+      {
+        "publishedAt": "2020-03-07 14:00:00",
+        "sentiment": 0.5719,
+        "sourceName": "TheStreet.com",
+        "title": "Okta CEO: Here's Why We Can Compete Effectively With Microsoft",
+        "url": "https://www.thestreet.com/investing/okta-ceo-why-we-can-compete-with-microsoft?puc=yahoo&cm_ven=YAHOO&yptr=yahoo",
+        "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"
+      },
+      {
+        "publishedAt": "2020-03-06 23:03:00",
+        "sentiment": 0.1779,
+        "sourceName": "MarketWatch",
+        "title": "Coronavirus has prompted these tech companies to ask employees to work from home",
+        "url": "https://www.marketwatch.com/story/coronavirus-has-prompted-these-tech-companies-to-ask-employees-to-work-from-home-2020-03-05?siteid=yhoof2&yptr=yahoo",
+        "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"
+      },
+      {
+        "publishedAt": "2020-03-06 22:39:33",
+        "sentiment": 0.6597,
+        "sourceName": "Reuters",
+        "title": "Turbulent markets test U.S. retail investors as coronavirus fears rage",
+        "url": "https://finance.yahoo.com/news/turbulent-markets-test-u-retail-223933041.html",
+        "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"
+      },
+      {
+        "publishedAt": "2020-03-06 21:16:00",
+        "sentiment": -0.34,
+        "sourceName": "MarketWatch",
+        "title": "Apple is latest tech company to ask employees to work from home due to coronavirus",
+        "url": "https://www.marketwatch.com/story/apple-is-latest-tech-company-to-ask-employees-to-work-from-home-due-to-coronavirus-2020-03-06?siteid=yhoof2&yptr=yahoo",
+        "urlToImage": "https://images.pexels.com/photos/102720/pexels-photo-102720.jpeg"
+      }
+    ],
+    "additionalData": {
+      "numberOfArticles": 13,
+      "overallSentiment": 2.86,
+      "avgSentiment": "0.22"
+    }
+  }
