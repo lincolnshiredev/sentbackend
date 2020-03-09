@@ -1,7 +1,7 @@
 import pandas as pd
 import requests
 import json
-# https://us-central1-enhanced-bebop-268815.cloudfunctions.net/stockData?ticker=
+
 def requestProfile(ticker: str): 
     # Gets company information as well as the current share price
     stock= requests.get(url='https://financialmodelingprep.com/api/v3/company/profile/' + ticker)
