@@ -2,6 +2,7 @@ from datetime import datetime
 import pandas as pd
 import requests
 import json
+import ast
 
 def requestProfile(ticker: str): 
     # Gets company information as well as the current share price
@@ -31,13 +32,13 @@ def request(ticker: str,days: int):
     price = requests.get(url='https://financialmodelingprep.com/api/v3/stock/real-time-price/' + ticker)
     stockPriceDf = pd.DataFrame([pd.read_json(json.dumps(price.json()),typ = 'series')])
     # Requests the live price for the ticker and then stores it in a dataframe
-    livePriceData: str = "{'date': '" +  date + "', 'open': 0, 'high': 0, 'low': 0, 'close': " + str(stockPriceDf.loc[0,'price'])+ ", 'adjClose': 0, 'volume': 0, 'unadjustedVolume': 0, 'change': 0, 'changePercent': 0, 'vwap': 0, 'label': 'N/a', 'changeOverTime': 0}"
-    # Creates a string which has the same format as a row in the historicDataDf
-    
-    historicDataDf.loc[-1]= livePriceData
-    historicDataDf = historicDataDf.sort_index()
-    # The live price is added into the historicDataframe at index -1, the dataframe is then sorted so this row shows at the top of the dataframe
 
+    livePriceDf = pd.DataFrame({"historical":[{'date': date, 'open': 0, 'high': 0, 'low': 0, 'close':  (str(stockPriceDf.loc[0,'price'])) , 'adjClose': 0, 'volume': 0, 'unadjustedVolume': 0, 'change': 0, 'changePercent': 0, 'vwap': 0, 'label': 'N/a', 'changeOverTime': 0}]})
+    # A Pandas DataFrame is created in the same format as the historic data DataFrame but containing 
+    # todays date and the current live price
+    
+    historicDataDf = livePriceDf.append(historicDataDf)
+    # The two dataFrames are appended 
     historicDict = historicDataDf.to_dict(orient='records')
     
     combinedDict = {'companyData':profileDict,'data':historicDict}
