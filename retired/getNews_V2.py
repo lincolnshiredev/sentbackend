@@ -10,15 +10,16 @@ import dateparser
 
 sia = SentimentIntensityAnalyzer()
 date = (datetime.now()- timedelta(days=1)).strftime("%Y-%m-%d")
-newsapi = NewsApiClient(api_key='d1303aa27f3840d9a0c5da1cccfc171b')
+newsapi = NewsApiClient(api_key='api key here')
 headers = {'x-rapidapi-host': "apidojo-yahoo-finance-v1.p.rapidapi.com",
-           'x-rapidapi-key': "8d02ef92a9mshbe032b4fec7a9bfp15eb07jsn6fc9e511caff"}
+           'x-rapidapi-key': "api key here"}
 tickers = ["aapl"]
 
 
 def requestProfile(ticker: str):
     stock = requests.get(
         url='https://us-central1-enhanced-bebop-268815.cloudfunctions.net/stockData?ticker=' + ticker)
+    print(stock)
     print('Getting Current Price for ' + ticker)
     return json.dumps((stock.json())['companyData']['profile']['price'])
 
